@@ -2,10 +2,10 @@ from django.contrib.auth.models import User
 from django.db import models
 
 # Create your models here.
-class Job(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+class jobs(models.Model):
+    author = models.ForeignKey(User(), on_delete=models.CASCADE)
     company = models.CharField(max_length=64)
-    job_title = models.CharField(max_length=64)
+    job_title = models.TextField()
     salary = models.IntegerField()
     notes = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -13,4 +13,4 @@ class Job(models.Model):
 
 
     def __str__(self):
-        return f'{self.job_title}, {self.company}'
+        return self.company
