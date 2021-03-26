@@ -1,18 +1,20 @@
-from django.shortcuts import render
+from jobs.permissions import IsOwnerOrReadOnly
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly 
+from .models import jobs
+from .serializers import jobsSerializer
 
 # Create your views here.
-from .models import Job
-from .permissions import IsAuthOrReadOnly
-from .serializers import JobSerializer
+
 
 
 class JobList(generics.ListCreateAPIView):
-    queryset = Job.objects.all()
-    serializer_class = JobSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    queryset = jobs.objects.all()
+    serializer_class = jobsSerializer
 
 
 class JobDetails(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (IsAuthOrReadOnly,)
-    queryset = Job.objects.all()
-    serializer_class = JobSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
+    queryset = jobs.objects.all()
+    serializer_class = jobsSerializer
