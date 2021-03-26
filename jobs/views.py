@@ -1,6 +1,6 @@
 from jobs.permissions import IsOwnerOrReadOnly
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticateOrReadOnly 
+from rest_framework.permissions import IsAuthenticatedOrReadOnly 
 from .models import jobs
 from .serializers import jobsSerializer
 
@@ -9,7 +9,7 @@ from .serializers import jobsSerializer
 
 
 class JobList(generics.ListCreateAPIView):
-    permission_classes = (IsAuthenticateOrReadOnly,)
+    permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = jobs.objects.all()
     serializer_class = jobsSerializer
 
