@@ -13,4 +13,4 @@ class jobs(models.Model):
 
 
     def __str__(self):
-        return self.company
+        return f'{self.job_title}, {self.company}'
