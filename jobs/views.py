@@ -6,6 +6,8 @@ from .serializers import JobsSerializer
 
 # Create your views here.
 
+
+
 class JobList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticatedOrReadOnly,)
     queryset = Jobs.objects.all()
